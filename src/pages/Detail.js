@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
+import { addItem } from './../redux/cartSlice.js'
+import { useDispatch } from 'react-redux';
 
 function Details(props){
   let {id} = useParams();
+  let dispatch = useDispatch();
   let [isVisible, setIsVisible] = useState(true);
-  // let [value, setValue] = useState('');
+  
   let [tab, setTab] = useState(0);
   let findShoes = props.shoes.find(x => x.id == id)
   useEffect(()=>{
@@ -24,12 +26,11 @@ function Details(props){
     }
   }, [])
 
-  // useEffect(()=>{
-  //   if(isNaN(value)) {
-  //     setValue('');
-  //     alert('숫자만 입력 가능!!!');
-  //   }
-  // }, [value])
+  const addItemToCart = () => {
+    let item = {id : id, name : findShoes.title, count : 1}
+    dispatch(addItem(item));
+    alert('장바구니에 추가되었습니다.');
+  }
 
   return(
     <div className={'container start ' + fade2}>
@@ -40,7 +41,6 @@ function Details(props){
           </div>
           : null
       }
-      {/* <input value={value} onChange={(e)=>{ setValue(e.target.value) }}/> */}
 
       <div className="row"> 
         <div className="col-md-6">
@@ -50,7 +50,7 @@ function Details(props){
           <h4 className="pt-5">{findShoes.title}</h4>
           <p>{findShoes.content}</p>
           <p>{findShoes.price}</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger" onClick={addItemToCart}>주문하기</button> 
         </div>
       </div>
 

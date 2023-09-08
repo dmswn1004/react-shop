@@ -39,7 +39,7 @@
 
 .main-bg{
   height: 300px;
-  background-image: url('./images/스누피.png');
+  background-image: url('./assets/스누피.png');
   background-size: cover;
   background-position: center;
 }

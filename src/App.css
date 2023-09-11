@@ -54,3 +54,25 @@
   /* transform: scale(1); */
   transition: all 0.5s;
 }
+
+.bar {
+  position: relative;
+  z-index: 2;
+}
+
+.watched-item {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: fit-content;
+  padding: 4px 0 10px;
+  background: white;
+  border: 0.4px solid gray;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 12px;
+}

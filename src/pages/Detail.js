@@ -10,7 +10,17 @@ function Details(props){
   let [isVisible, setIsVisible] = useState(true);
   
   let [tab, setTab] = useState(0);
-  let findShoes = props.shoes.find(x => x.id == id)
+  let findShoes = props.shoes.find(x => x.id == id);
+
+  useEffect(() => {
+    let data = localStorage.getItem('watched')
+    data = JSON.parse(data)
+    data.push(findShoes.id)
+    data = new Set(data);
+    data = Array.from(data)
+    localStorage.setItem('watched', JSON.stringify(data))
+  }, [])
+
   useEffect(()=>{
     let timer = setTimeout(()=>{ setIsVisible(false) },2000)
     return ()=>{

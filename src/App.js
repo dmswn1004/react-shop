@@ -1,13 +1,21 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import data from './data.js'
 import Details from './pages/Detail';
 import Cart from './pages/Cart';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import WatchedItem from './components/WatchedItem';
 
 function App() {
+  useEffect(()=>{
+    let ary = localStorage.getItem('watched');
+    if(!ary){
+      localStorage.setItem('watched', JSON.stringify([]));
+    }
+  },[]);
+
   let [shoes, setShoes] = useState(data);
   let [isVisible, setIsVisible] = useState(true);
   let navigate = useNavigate();
@@ -31,11 +39,7 @@ function App() {
             <div className="row">
               {
                 shoes.map((a,i)=>{
-                  return(
-                    <div key={i}>
-                      <Cards shoes={a} i={i+1}></Cards>
-                    </div>
-                  )
+                  return <Cards shoes={a} i={i + 1} key={i} />
                 })
               }
             </div>
@@ -60,6 +64,8 @@ function App() {
         <Route path='/cart' element={<Cart/>} />
         <Route path='*' element={<div>404 error</div>} />
       </Routes>
+
+      <WatchedItem/>
     </div>
   );
 }

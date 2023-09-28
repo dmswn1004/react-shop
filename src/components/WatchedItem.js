@@ -1,7 +1,7 @@
 function WatchedItem(){
     let items = localStorage.getItem('watched');
     items = JSON.parse(items);
-    console.log(items)
+
     return(
         <div className="bar">
             <div className="watched-item">

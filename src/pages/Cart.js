@@ -5,7 +5,6 @@ import { changeName } from '../redux/userSlice.js';
 import { styled } from 'styled-components';
 import { AiOutlineMinusCircle } from "react-icons/ai";
 
-
 function Cart(){
     let dispatch = useDispatch();
     let cart = useSelector((state)=> state.cart );
@@ -14,7 +13,6 @@ function Cart(){
     return(
         <div>
             <Title onClick={()=>dispatch(changeName())}>{store.user.name}의 장바구니</Title>
-
             <Table>
                 <thead>
                     <tr>
